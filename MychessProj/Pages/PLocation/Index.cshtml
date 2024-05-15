@@ -1,0 +1,48 @@
+﻿@page
+@model MychessProj.Pages.PLocation.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].NumberOfTables)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].Addres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].CityCodeNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Location) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfTables)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityCodeNavigation.CityCode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdLocation">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdLocation">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdLocation">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

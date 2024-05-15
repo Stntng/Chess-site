@@ -1,0 +1,102 @@
+﻿@page
+@model MychessProj.Pages.PTournament.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+@if (User.IsInRole("mod"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].NameTourn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].DateTourn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].JudgeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].IdLocationNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tournament)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameTourn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTourn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JudgeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdLocationNavigation.IdLocation)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.IdTourn">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.IdTourn">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.IdTourn">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@if(User.IsInRole("player"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].NameTourn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].DateTourn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].JudgeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament[0].IdLocationNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tournament)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameTourn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTourn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JudgeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdLocationNavigation.IdLocation)
+                    </td>
+                    <td>
+                        <a asp-page="./ConfirmRegistration" asp-route-id="@item.IdTourn">Зарегистрироваться</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

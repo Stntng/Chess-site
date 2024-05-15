@@ -1,0 +1,101 @@
+﻿@using MychessProj.Pages
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Шахматы</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MychessProj.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index"> <img src='https://sun9-35.userapi.com/impg/O1d2MJURrnsTyUwjodAQ-Yx1_qOyK6UKst2cUw/w-IMdghbI1E.jpg?size=32x32&quality=96&sign=e177a6783db5c24227086ba420cc775b&type=album'  />ChessMaster</a>
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @if (User.IsInRole("player"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/PTournament/Index">Турниры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/PUser/Index">Список игроков</a>
+                            </li>
+                        </ul>
+                    }
+                    @if(User.IsInRole("mod"))
+                    {
+                        <ul id="menu">
+                            <li>
+                                <a>Турниры</a>
+                                <ul>
+                                    <li><a asp-page="/PTournament/Index">Управление турнирами</a></li>
+                                    <li><a asp-page="/PTournament/Create">Создание</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>Пользователи</a>
+                                <ul>
+                                    <li><a asp-page="/PUser/Index">Управление пользователями</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>Локации</a>
+                                <ul>
+                                    <li><a asp-page="/PLocation/Index">Редактирование локаций</a></li>
+                                    <li><a asp-page="/PLocation/Create">Создание</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>Города</a>
+                                <ul>
+                                    <li><a asp-page="/PCity/Index">Редактирование городов</a></li>
+                                    <li><a asp-page="/PCity/Create">Добавление городов</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                </div>
+                <div class="mr-2">
+                    <partial name="_LoginStatusPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_Notification"/>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - MychessProj - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <style>
+        body{
+            background-image: url('https://s0.rbk.ru/v6_top_pics/media/img/2/03/756585188723032.jpg');
+        }
+    </style>
+@*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

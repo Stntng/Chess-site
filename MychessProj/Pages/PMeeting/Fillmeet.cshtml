@@ -1,0 +1,26 @@
+﻿@page
+@using MychessProj.Models;
+@model MychessProj.Pages.PMeeting.FillmeetModel
+@{
+    ViewData["Title"] = "Заполнить встречи";
+}
+<h1>Заполнение встреч</h1>
+
+<h3>Для какого турнира вы хотите создать встречи?</h3>
+
+<div class="form-group">
+            <form method="post">
+    <label asp-for="Tournament.IdTourn" class="control-label"></label>
+    <select asp-for="Tournament.IdTourn" class="form-control" asp-items="ViewBag.IdTourn"></select>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
